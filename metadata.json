@@ -1,0 +1,6 @@
+{
+  "name": "Andeu Setal Jummah Yi",
+  "description": "Site officiel de l'Association Andeu Setal Jummah Yi (ASJY) — Une jeunesse engagée pour des mosquées propres, belles et accueillantes au Sénégal. Jeff té YALLA rek takh.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
