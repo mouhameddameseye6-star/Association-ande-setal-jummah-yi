@@ -211,7 +211,7 @@ export const AsjyLogo: React.FC<AsjyLogoProps> = ({
     <div className={`inline-flex items-center gap-3 ${className}`} id="asjy-logo-container">
       {/* Official Insignia Symbol from User Attachment */}
       <div
-        className={`${iconDimensions} rounded-2xl bg-white p-1 shadow-sm hover:shadow-md transition-shadow flex items-center justify-center relative border border-[#006847]/20 shrink-0 ring-2 ring-[#006847]/10`}
+        className={`${iconDimensions} rounded-2xl !bg-white p-1 shadow-sm hover:shadow-md transition-shadow flex items-center justify-center relative border border-[#006847]/20 shrink-0 ring-2 ring-[#006847]/10`}
         title="Association Andeu Setal Jummah Yi — Logo Officiel"
       >
         <AsjyOfficialEmblemSvg />
@@ -222,7 +222,7 @@ export const AsjyLogo: React.FC<AsjyLogoProps> = ({
           <div className="flex items-center gap-1.5">
             <span
               className={`font-black tracking-wider uppercase text-base sm:text-lg ${
-                lightText ? 'text-white' : 'text-[#0D3823]'
+                lightText ? 'text-white' : 'text-[#0D3823] dark:text-[#D4AF37]'
               }`}
             >
               ASJY
@@ -232,7 +232,7 @@ export const AsjyLogo: React.FC<AsjyLogoProps> = ({
               className={`text-[10px] font-semibold tracking-widest uppercase px-1.5 py-0.5 rounded ${
                 lightText
                   ? 'bg-white/10 text-emerald-200 border border-white/10'
-                  : 'bg-[#0D3823]/10 text-[#0D3823]'
+                  : 'bg-[#0D3823]/10 dark:bg-[#1E4D34] text-[#0D3823] dark:text-emerald-300'
               }`}
             >
               Sénégal
@@ -240,12 +240,12 @@ export const AsjyLogo: React.FC<AsjyLogoProps> = ({
           </div>
           <span
             className={`font-bold tracking-tight text-xs sm:text-sm uppercase ${
-              lightText ? 'text-[#FAF9F5]/90' : 'text-[#19241C]'
+              lightText ? 'text-[#FAF9F5]/90' : 'text-[#19241C] dark:text-gray-200'
             }`}
           >
             Andeu Setal Jummah Yi
           </span>
-          <span className="text-[10.5px] italic text-[#C59B27] font-medium leading-none mt-0.5">
+          <span className="text-[10.5px] italic text-[#C59B27] dark:text-[#D4AF37] font-medium leading-none mt-0.5">
             « Jeff té YALLA rek takh »
           </span>
         </div>
@@ -253,4 +253,3 @@ export const AsjyLogo: React.FC<AsjyLogoProps> = ({
     </div>
   );
 };
-

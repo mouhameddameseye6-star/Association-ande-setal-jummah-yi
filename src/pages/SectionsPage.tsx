@@ -76,8 +76,8 @@ export const SectionsPage: React.FC<SectionsPageProps> = ({ onNavigate }) => {
                   <span className="text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded bg-[#0D3823]/10 text-[#0D3823]">
                     Depuis {section.activeSince}
                   </span>
-                  <span className="text-xs text-gray-500 font-semibold">
-                    {section.mosquesCleaned} mosquées
+                  <span className="text-xs text-[#0D3823] font-bold">
+                    Section {section.region}
                   </span>
                 </div>
 
@@ -104,14 +104,14 @@ export const SectionsPage: React.FC<SectionsPageProps> = ({ onNavigate }) => {
               </div>
 
               <div className="pt-4 mt-4 border-t border-gray-100 flex items-center justify-between text-xs">
-                <span className="text-gray-500 flex items-center gap-1">
-                  <Users className="w-3.5 h-3.5 text-[#0D3823]" />
-                  {section.membersCount} bénévoles
+                <span className="text-gray-500 flex items-center gap-1 font-semibold text-[11px]">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>Section Active</span>
                 </span>
 
                 <button
                   onClick={() => onNavigate('rejoindre')}
-                  className="font-bold text-[#0D3823] hover:underline flex items-center gap-1"
+                  className="font-bold text-[#0D3823] hover:underline flex items-center gap-1 cursor-pointer"
                 >
                   <span>Rejoindre</span>
                   <ArrowRight className="w-3 h-3" />

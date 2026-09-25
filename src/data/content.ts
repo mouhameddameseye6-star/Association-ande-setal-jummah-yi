@@ -4,10 +4,9 @@ import {
   DonationOption,
   OperationEvent,
   RealisationPhoto,
-  SanctionItem,
   SectionData
 } from '../types';
-import { ASJY_PHOTOS } from './assets';
+import { ASJY_PHOTOS, ASJY_OFFICIAL_PHOTOS } from './assets';
 
 export const OFFICIAL_SOCIALS = {
   youtube: {
@@ -52,342 +51,286 @@ export const CHARTES_DATA: CharteItem[] = [
   {
     id: 'C1',
     code: 'C1',
-    title: 'Objet de l’Association & Slogan Fondateur',
-    summary: 'Servir la maison d’Allah sans contrepartie : « Jeff té YALLA rek takh »',
-    fullText: `L'Association Andeu Setal Jummah Yi a pour objet exclusif l'entretien régulier, le nettoyage approfondi, l'embellissement paysager, la réhabilitation des équipements sanitaires et l'action sociale au profit des mosquées du Sénégal.
-
-Chaque membre doit impérativement agir avec sincérité d'intention (Niyyah). Notre devise officielle et immuable est : « Jeff té YALLA rek takh » (Agir uniquement pour l'amour d'Allah). Aucune recherche de gloire personnelle, d'avantage matériel ou de visibilité individuelle n'est acceptée.`,
+    title: 'Slogan Fondateur & Rejet de l’Ostentation',
+    summary: 'Fondée sur « jeff té YALLA rek takh » — Banni à tout membre faisant d’acte ostentatoire (« nguisteul »)',
+    fullText: `L'association est fondée sur ce slogan : « jeff té YALLA rek takh ». Il sera banni à tout membre faisant d'acte ostentatoire (« nguisteul ») et toutes autres choses semblables.`,
     rules: [
-      "Pureté d'intention absolue (Ikhlas)",
-      "Action entièrement bénévole et désintéressée",
-      "Priorité au bien-être des fidèles et à la sacralité des mosquées"
+      "Fondement exclusif : « jeff té YALLA rek takh »",
+      "Bannissement strict de tout acte ostentatoire (« nguisteul »)",
+      "Sincérité totale sans recherche d'apparence"
     ]
   },
   {
     id: 'C2',
     code: 'C2',
     title: 'Neutralité Politique Absolue',
-    summary: 'Interdiction stricte de toute politique partisane au sein de l’ASJY',
-    fullText: `L'association Andeu Setal Jummah Yi n'est pas basée sur la politique. Elle préserve une indépendance totale et intransigeante à l'égard de tout parti, coalition ou personnalité politique.
+    summary: 'Rejet total de la politisation — Participation libre sous réserve de respecter nos chartes',
+    fullText: `L'association n'est pas aussi basée sur la politique c'est-à-dire la politisation de l'association ou de promouvoir les acteurs politiques. L'association punit tout acte politique. Toute personne voulant nous rejoindre est libre de participer pour que nous puissions mener nos activités à condition de respecter nos chartes.
 
-La politisation de l'association ou la promotion d'acteurs politiques est formellement interdite au sein des groupes et lors des activités. Aucun tee-shirt partisan, fanion, discours électoral ou tract ne peut être introduit lors des chantiers ou sur nos canaux de communication. L'association appartient à toute la communauté des croyants.`,
+Rappel : notre slogan « jeff té YALLA rek takh ».`,
     rules: [
-      "Aucune promotion politique autorisée",
-      "Stricte neutralité sur les canaux de communication officiels",
-      "Ouverture à tout musulman de bonne volonté acceptant la charte"
+      "Interdiction formelle de politiser l'association",
+      "Interdiction de promouvoir des acteurs politiques",
+      "Adhésion libre sous condition stricte de respecter nos chartes"
     ]
   },
   {
     id: 'C3',
     code: 'C3',
-    title: 'Tenue Décente et Respect Mutuel',
-    summary: 'Respect des préceptes islamiques, pudeur, courtoisie et séparation respectueuse',
-    fullText: `Les membres des deux sexes peuvent participer aux chantiers dans le respect scrupuleux des normes de pudeur et de décence islamiques.
-
-Les hommes et les femmes sont tenus de porter des tenues couvrantes, sobres et respectueuses de la sainteté de la mosquée. Le langage doit demeurer en tout temps courtois, fraternel et empreint de modestie. Les espaces réservés aux femmes (mezzanines, cours intérieures) sont prioritairement entretenus par les sœurs bénévoles.`,
+    title: 'Participation des Femmes & Pudeur (« Yiw »)',
+    summary: 'Habits pudiques (« yiw »), seuls visage et mains visibles, pas de rassemblement mixte',
+    fullText: `Les femmes peuvent rejoindre l'association. Mais il est impératif qu'elles portent des habits pudiques (« yiw »). C'est-à-dire seul le visage et les mains doivent apparaître. De même il est interdit aux femmes et aux hommes de se rassembler sauf en cas de questions ou d'éventuelles recommandations lors du nettoyage.`,
     rules: [
-      "Tenue vestimentaire couvrante et décente",
-      "Courtoisie et fraternité dans les échanges",
-      "Respect des sensibilités des imams et comités de mosquée"
+      "Les femmes sont bienvenues au sein de l'association",
+      "Port obligatoire d'habits pudiques (« yiw ») : seuls visage et mains visibles",
+      "Interdiction de rassemblement mixte sauf questions ou recommandations nécessaires"
     ]
   },
   {
     id: 'C4',
     code: 'C4',
-    title: 'Cotisation Mensuelle Obligatoire',
-    summary: '1 000 FCFA par mois pour financer le matériel et assurer l’autonomie',
-    fullText: `Conformément aux statuts constitutifs, chaque membre actif adhérant s'engage à s'acquitter d'une cotisation mensuelle modique et obligatoire fixée à 1 000 FCFA.
+    title: 'Cotisations Mensuelles Obligatoires',
+    summary: 'Fixées à 1 000 FCFA obligatoires par membre — Permis de donner plus',
+    fullText: `Les cotisations mensuelles fixées à 1000 FCFA sont obligatoires. Donc il est impératif que tout membre le respecte.
 
-Cette cotisation garantit l'indépendance financière de l'association. Elle sert exclusivement à l'achat régulier des produits d'entretien (détergents désinfectants, javel, savon liquide), du matériel de lavage (balais, raclettes professionnelles, serpillières), et au renouvellement des bouilloires (satala) et de la robinetterie défectueuse.`,
+NB : C'est permis de donner plus que 1000 FCFA pour les cotisations mensuelles.`,
     rules: [
-      "Montant fixé à 1 000 FCFA par mois et par membre",
-      "Paiement avant le 10 de chaque mois via trésorerie ou Mobile Money",
-      "Transparence financière intégrale et reddition régulière des comptes"
+      "Cotisations mensuelles fixées obligatoirement à 1 000 FCFA",
+      "Respect impératif par chaque membre actif",
+      "Liberté et permission de contribuer au-delà de 1 000 FCFA"
     ]
   },
   {
     id: 'C5',
     code: 'C5',
-    title: 'Discipline et Procédure de Sanctions',
-    summary: 'Rappels fraternels, avertissements, suspensions et exclusions en cas de faute',
-    fullText: `Pour préserver l'harmonie, la discipline et la réputation de l'ASJY, tout manquement grave aux chartes fait l'objet d'une procédure collégiale :
-1. Rappel à l'ordre et entretien fraternel en cas de manquement mineur ou de retard non motivé.
-2. Avertissement écrit du bureau pour absences consécutives non justifiées ou non-paiement répété sans motif valable.
-3. Suspension temporaire ou exclusion définitive pour tentative de politisation, indiscipline caractérisée, comportement indécent dans un lieu saint ou atteinte à la dignité de l'association.`,
+    title: 'Règles du Groupe WhatsApp de l’Association',
+    summary: 'Interdiction des publications, vidéos, photos, questions ou discussions diverses',
+    fullText: `Il est interdit de faire des publications, d'envoyer des photos ou vidéos, de poser des questions, de faire des discussions ou divers dans le groupe WhatsApp de l'association.`,
     rules: [
-      "Gradation équitable et respectueuse",
-      "Protection de la cohésion du groupe",
-      "Décision finale collégiale du bureau exécutif"
+      "Interdiction formelle de faire des publications",
+      "Interdiction d'envoyer des photos ou vidéos",
+      "Interdiction de poser des questions ou de mener des discussions diverses"
     ]
   },
   {
     id: 'C6',
     code: 'C6',
-    title: 'Rôle et Engagement des Membres',
-    summary: 'Esprit d’équipe, solidarité, entraide et implication sur le terrain',
-    fullText: `Être membre de l'ASJY n'est pas un titre honorifique, c'est un dévouement concret. Chaque membre doit faire preuve d'esprit d'équipe, de solidarité envers ses camarades et de disponibilité lors des nettoyages.
-
-L'entraide mutuelle, la bonne humeur, le respect des consignes édictées par les coordinateurs de chantiers et la valorisation du travail collectif priment sur toute considération individuelle.`,
+    title: 'Discipline & Respect des Recommandations',
+    summary: 'S’abstenir de tout ce qui est interdit et respecter les recommandations',
+    fullText: `Toute personne membre de l'association doit s'abstenir de tout ce qui est interdit et respecter les recommandations.`,
     rules: [
-      "Travail d'équipe solidaire et bienveillant",
-      "Écoute des consignes des coordinateurs désignés",
-      "Partage d'expérience entre les anciens et les nouveaux"
+      "Abstention stricte de tout ce qui est interdit",
+      "Respect rigoureux de l'ensemble des recommandations",
+      "Exemplarité et loyauté envers l'association"
     ]
   },
   {
     id: 'C7',
     code: 'C7',
-    title: 'Gestion et Soin du Matériel',
-    summary: 'Responsabilité collective, inventaire et propreté des outils de travail',
-    fullText: `Le matériel acquis grâce aux cotisations des membres et aux dons des bienfaiteurs constitue un dépôt sacré (Amana).
-
-À la fin de chaque chantier de quinzaine, tous les outils (balais, brosses, raclettes, tuyaux d'arrosage, aspirateurs) doivent être soigneusement lavés, séchés, comptabilisés et rangés dans les caisses de la section sous la responsabilité du chargé du matériel. Tout matériel perdu ou détérioré par négligence doit être signalé immédiatement.`,
+    title: 'Ponctualité & Gestion des Absences',
+    summary: 'Respect de l’heure fixé primordial — Signaler toute absence bien avant le nettoyage',
+    fullText: `Le respect de l'heure fixée pour les nettoyages est primordial. Ainsi, tout membre qui inscrit son nom sur la liste des présents pour le nettoyage et qui prévoit d'être absent doit le signaler bien avant le jour du nettoyage.`,
     rules: [
-      "Nettoyage et désinfection des outils après chaque opération",
-      "Inventaire rigoureux avant et après chaque dimanche",
-      "Stockage sécurisé auprès des référents locaux"
+      "Respect impératif et primordial de l'heure fixée",
+      "Inscription formelle sur la liste des présents",
+      "Signalement obligatoire de toute absence bien avant le jour du nettoyage"
     ]
   },
   {
     id: 'C8',
     code: 'C8',
-    title: 'Organisation des Nettoyages',
-    summary: 'Chantiers réguliers organisés par quinzaine de dimanche (2 fois par mois)',
-    fullText: `Les opérations de nettoyage sur le terrain sont structurées selon un rythme précis : par quinzaine de dimanche (deux dimanches par mois).
-
-Ce rythme permet d'assurer une régularité irréprochable dans les mosquées tout en préservant le repos dominical, les obligations professionnelles, étudiantes et familiales des bénévoles. Chaque intervention commence généralement à 08h30 pour se conclure avant l'appel à la prière de Dhuhr.`,
+    title: 'Organisation des Nettoyages par Quinzaine',
+    summary: 'Activités faites par quinzaines de dimanche (deux nettoyages par mois)',
+    fullText: `Les activités (nettoyages) seront faites par quinzaines de dimanche c'est-à-dire les dimanches seront alternés de telle sorte à faire deux nettoyages par mois.`,
     rules: [
-      "Rythme bimensuel fixe (quinzaine de dimanche)",
-      "Horaires standards : 08h30 à 12h30",
-      "Préparation logistique et état des lieux préliminaire"
+      "Nettoyages organisés par quinzaines de dimanche",
+      "Alternance des dimanches pour équilibrer repos et engagement",
+      "Deux nettoyages complets par mois"
     ]
   }
 ];
 
-export const SANCTIONS_DATA: SanctionItem[] = [
-  {
-    level: 'Niveau 1 — Rappel à l’ordre fraternel',
-    description: 'En cas de retard non motivé, manquement mineur ou propos inapproprié sur les canaux de discussion.',
-    impact: 'Entretien privé avec le coordonnateur de section et rappel de l’esprit désintéressé « Jeff té YALLA rek takh ».'
-  },
-  {
-    level: 'Niveau 2 — Avertissement officiel',
-    description: 'En cas d’absences répétées non justifiées à 2 chantiers consécutifs ou retard de cotisation sans justification valable.',
-    impact: 'Notification écrite du bureau et obligation de régularisation sous 15 jours.'
-  },
-  {
-    level: 'Niveau 3 — Suspension ou Exclusion définitive',
-    description: 'En cas de tentative de politisation, tenue indécente dans une mosquée, insubordination grave ou récidive après avertissement.',
-    impact: 'Perte immédiate de la qualité de membre et exclusion définitive de l’association.'
-  }
-];
+export const CHARTES_CONCLUSION = "En définitive nous tenons à dire que nos chartes ont comme objet de faire cette association, une association juste et loyale. Merci de bien vouloir les respecter.";
 
 export const SECTIONS_DATA: SectionData[] = [
   {
     id: 'dakar',
     name: 'Section Dakar (Siège National)',
+    region: 'Dakar',
     activeSince: '2022',
-    mosquesCleaned: 64,
-    membersCount: 180,
-    description: "Section historique et pionnière. Coordonne les 4 départements de Dakar, Pikine, Guédiawaye et Rufisque avec une mobilisation exemplaire par quinzaine de dimanche.",
+    status: 'active',
+    description: "Section pionnière et siège de l'association. Coordonne les interventions dans les départements de Dakar, Pikine, Guédiawaye et Rufisque selon le rythme par quinzaine de dimanche.",
     coordinatorContact: '+221 77 757 87 89 / +221 76 440 14 41',
     communes: ['Dakar-Plateau', 'Médina', 'Grand Yoff', 'Parcelles Assainies', 'Pikine', 'Guédiawaye', 'Rufisque']
   },
   {
     id: 'thies',
     name: 'Section Thiès',
+    region: 'Thiès',
     activeSince: '2023',
-    mosquesCleaned: 28,
-    membersCount: 75,
-    description: "Très active sur la commune de Thiès, Mbour et Tivaouane. Forte mobilisation des étudiants et jeunes travailleurs pour l'entretien et la réparation des robinets d'ablution.",
+    status: 'active',
+    description: "Section active assurant les chantiers de nettoyage, le dépoussiérage des tapis et la réhabilitation des espaces d'ablution dans la région de Thiès.",
     coordinatorContact: '+221 77 757 87 89 / +221 76 440 14 41',
     communes: ['Thiès-Nord', 'Thiès-Sud', 'Mbour', 'Tivaouane']
   },
   {
     id: 'diourbel',
     name: 'Section Diourbel / Mbacké',
+    region: 'Diourbel',
     activeSince: '2023',
-    mosquesCleaned: 35,
-    membersCount: 90,
-    description: "Au cœur du bassin religieux du Baol. Nettoyage intensif des nattes, lavage des cours et approvisionnement continu en bouilloires neuves à Diourbel, Mbacké et Touba.",
+    status: 'active',
+    description: "Section active au cœur du bassin religieux du Baol. Nettoyage et entretien régulier des lieux de prière, approvisionnement en matériel d'hygiène et bouilloires neuves.",
     coordinatorContact: '+221 77 757 87 89 / +221 76 440 14 41',
     communes: ['Diourbel Commune', 'Mbacké', 'Périphérie Touba']
   },
   {
     id: 'fatick',
     name: 'Section Fatick',
+    region: 'Fatick',
     activeSince: '2024',
-    mosquesCleaned: 12,
-    membersCount: 38,
-    description: "Équipe dévouée soutenant les lieux de prière ruraux et urbains avec dotation en matériel de nettoyage durable.",
+    status: 'active',
+    description: "Section active dédiée au soutien et à l'entretien régulier des mosquées avec dotation en matériel de nettoyage durable.",
     coordinatorContact: '+221 77 757 87 89 / +221 76 440 14 41',
     communes: ['Fatick Commune', 'Diofior', 'Gossas']
   }
 ];
 
-export const ARTICLES_DATA: ArticleData[] = [
-  {
-    id: 'art-1',
-    title: 'Bilan du Grand Chantier : Dépoussiérage et Lavage des Tapis de Prière',
-    date: '8 Septembre 2026',
-    category: 'Chantier',
-    region: 'Thiès & Dakar',
-    summary: "Les jeunes bénévoles équipés de leurs gilets fluorescents officiels ont évacué et lavé à grande eau les grands tapis et moquettes de prière au soleil.",
-    content: `Dans le respect strict du rythme bimensuel de l'association, les sections se sont mobilisées dès 8 heures du matin. Équipés des gilets officiels fluorescents ASJY, les volontaires ont procédé au roulage, transport et dépoussiérage des imposants tapis de prière dans la cour extérieure.
+export const ARTICLES_DATA: ArticleData[] = [];
 
-Les équipes ont ensuite procédé au lessivage méticuleux des carreaux et des surfaces intérieures, au savon désinfectant et aux raclettes, pour offrir aux fidèles un cadre parfaitement purifié pour les prières quotidiennes et le Jummah.
-
-L'imam et le comité de gestion de la mosquée ont salué cet engagement dévoué et sincère, fidèle au mot d'ordre « Jeff té YALLA rek takh ».`,
-    image: ASJY_PHOTOS.nettoyageTapis
-  },
-  {
-    id: 'art-2',
-    title: 'Opération Ndogou Solidaire : Café Touba Chaud et Kits aux Carrefours',
-    date: '15 Mars 2026',
-    category: 'Solidarité Ramadan',
-    region: 'Thiès, Dakar & Régions',
-    summary: "À l'heure de la rupture du jeûne, nos bénévoles ont servi du café Touba chaud au thermos et distribué des kits complets aux automobilistes et passants.",
-    content: `À l'occasion du mois sacré de Ramadan, l'Association Andeu Setal Jummah Yi a déployé ses équipes de bénévoles aux abords des grands axes routiers et des mosquées.
-
-Munis de thermos de café Touba bien chaud, de gobelets et de sachets garnis de pain frais et de dattes, nos jeunes ont accueilli chaleureusement les chauffeurs bloqués dans la circulation et les passants pour leur permettre de rompre le jeûne dans la dignité et la fraternité.
-
-Cette action bénévole et solidaire est financée grâce aux cotisations des membres et à la générosité des donateurs.`,
-    image: ASJY_PHOTOS.ndogouRue
-  },
-  {
-    id: 'art-3',
-    title: 'Mobilisation des Équipes Féminines : Hygiène, Entretien et Logistique',
-    date: '22 Août 2026',
-    category: 'Vie Associative',
-    region: 'Thiès & National',
-    summary: "Les sœurs bénévoles de l'ASJY, en première ligne avec bassines, désinfectants et gilets officiels, assurent le nettoyage approfondi des espaces de prière et sanitaires.",
-    content: `La composante féminine de l'Association Andeu Setal Jummah Yi joue un rôle moteur lors de chaque chantier du dimanche.
-
-Munies de leurs gilets fluorescents, de gants de protection et de matériel adapté (bassines, éponges, brosses), elles prennent en charge le lessivage soigné des estrades, des bancs d'ablution, des portes et des espaces réservés aux femmes.
-
-Leur dévouement sans faille illustre la vitalité de la jeunesse musulmane unie pour la propreté de la maison d'Allah.`,
-    image: ASJY_PHOTOS.volontairesEntree
-  }
-];
-
-export const OPERATIONS_DATA: OperationEvent[] = [
-  {
-    id: 'op-1',
-    mosqueName: 'Mosquée Al-Rahma',
-    region: 'Dakar',
-    location: 'Pikine Tally Boumack',
-    date: 'Dimanche 20 Septembre 2026',
-    time: '08h30 - 12h30',
-    volunteersRegistered: 42,
-    description: "Nettoyage intégral à grande eau, dépoussiérage des tapis, révision de la plomberie d'ablution et remplacement des satalas usagées.",
-    status: 'upcoming'
-  },
-  {
-    id: 'op-2',
-    mosqueName: 'Mosquée Thierno Mountaga',
-    region: 'Thiès',
-    location: 'Thiès Grand Stand',
-    date: 'Dimanche 4 Octobre 2026',
-    time: '08h30 - 12h30',
-    volunteersRegistered: 28,
-    description: "Opération rénovation des blocs sanitaires, pose de projecteurs LED et lavage des carrelages de la nef principale.",
-    status: 'upcoming'
-  },
-  {
-    id: 'op-3',
-    mosqueName: 'Mosquée de Mbacké Khewar',
-    region: 'Diourbel',
-    location: 'Mbacké',
-    date: 'Dimanche 18 Octobre 2026',
-    time: '08h00 - 13h00',
-    volunteersRegistered: 35,
-    description: "Lavage des dalles extérieures, aspiration des moquettes intérieures et désinfection des bacs d'ablution.",
-    status: 'upcoming'
-  },
-  {
-    id: 'op-4',
-    mosqueName: 'Grande Mosquée de Diourbel (Annexe)',
-    region: 'Diourbel',
-    location: 'Diourbel Centre',
-    date: 'Dimanche 23 Août 2026',
-    time: '08h30 - 12h30',
-    volunteersRegistered: 48,
-    description: "Grand chantier de désensablement et réfection complète de l'espace ablution. Clôturé avec les remerciements de l'Imam.",
-    status: 'completed'
-  },
-  {
-    id: 'op-5',
-    mosqueName: 'Mosquée Médina Rue 15',
-    region: 'Dakar',
-    location: 'Dakar Médina',
-    date: 'Dimanche 9 Août 2026',
-    time: '08h30 - 12h00',
-    volunteersRegistered: 52,
-    description: "Lavage à haute pression de la cour et dotation de 30 bouilloires en plastique neuves.",
-    status: 'completed'
-  }
-];
+export const OPERATIONS_DATA: OperationEvent[] = [];
 
 export const REALISATIONS_GALLERY: RealisationPhoto[] = [
   {
     id: 'photo-1',
-    title: 'Roulage et aération des tapis de prière en extérieur',
+    title: ASJY_OFFICIAL_PHOTOS.grandChantierTapisRouge.title,
     category: 'Nettoyage',
-    location: 'Mosquée de Quartier',
-    region: 'Thiès',
-    date: 'Dimanche de Chantier',
-    image: ASJY_PHOTOS.nettoyageTapis,
-    description: "Évacuation en plein soleil, dépoussiérage et lavage approfondi des grands tapis de prière par les volontaires en gilets officiels."
+    location: 'Grande Mosquée',
+    region: 'Sénégal',
+    date: 'Chantier Officiel',
+    image: ASJY_OFFICIAL_PHOTOS.grandChantierTapisRouge.src,
+    alternateSrc: ASJY_OFFICIAL_PHOTOS.grandChantierTapisRouge.alternateSrc,
+    filename: ASJY_OFFICIAL_PHOTOS.grandChantierTapisRouge.filename,
+    description: ASJY_OFFICIAL_PHOTOS.grandChantierTapisRouge.description
   },
   {
     id: 'photo-2',
-    title: 'Lessivage soigné et récurage au savon des bancs d’ablution',
+    title: ASJY_OFFICIAL_PHOTOS.lavageEsplanadeCour.title,
     category: 'Nettoyage',
-    location: 'Espace Sanitaire & Ablutions',
-    region: 'Thiès',
+    location: 'Esplanade & Cour',
+    region: 'Mosquée',
     date: 'Dimanche de Chantier',
-    image: ASJY_PHOTOS.lavageBanc,
-    description: "Récurage méticuleux avec gants étanches, brosses et eau savonneuse pour désinfecter les estrades et bancs en bois de la mosquée."
+    image: ASJY_OFFICIAL_PHOTOS.lavageEsplanadeCour.src,
+    alternateSrc: ASJY_OFFICIAL_PHOTOS.lavageEsplanadeCour.alternateSrc,
+    filename: ASJY_OFFICIAL_PHOTOS.lavageEsplanadeCour.filename,
+    description: ASJY_OFFICIAL_PHOTOS.lavageEsplanadeCour.description
   },
   {
     id: 'photo-3',
-    title: 'Acheminement du matériel et des bassines par les bénévoles',
-    category: 'Vie Associative',
-    location: 'Entrée Principale Mosquée',
-    region: 'Thiès',
-    date: 'Chantier Quinzaine',
-    image: ASJY_PHOTOS.volontairesEntree,
-    description: "Arrivée matinale des équipes féminines équipées des gilets fluorescents ASJY avec bassines d'eau, savons et raclettes professionnelles."
+    title: ASJY_OFFICIAL_PHOTOS.depoussierageTapisVert.title,
+    category: 'Nettoyage',
+    location: 'Salle de Prière',
+    region: 'Section Thiès & Régions',
+    date: 'Opération Quinzaine',
+    image: ASJY_OFFICIAL_PHOTOS.depoussierageTapisVert.src,
+    alternateSrc: ASJY_OFFICIAL_PHOTOS.depoussierageTapisVert.alternateSrc,
+    filename: ASJY_OFFICIAL_PHOTOS.depoussierageTapisVert.filename,
+    description: ASJY_OFFICIAL_PHOTOS.depoussierageTapisVert.description
   },
   {
     id: 'photo-4',
-    title: 'Distribution de café Touba chaud aux automobilistes (Ndogou)',
-    category: 'Ramadan',
-    location: 'Carrefour Urbain',
-    region: 'Thiès & Régions',
-    date: 'Ramadan 2026',
-    image: ASJY_PHOTOS.ndogouRue,
-    description: "Service direct de boissons chaudes au thermos et de kits de rupture du jeûne pour les chauffeurs et usagers bloqués aux carrefours."
+    title: ASJY_OFFICIAL_PHOTOS.sectionThiesGiletsBassine.title,
+    category: 'Vie Associative',
+    location: 'Mosquée de Quartier',
+    region: 'Section Thiès',
+    date: 'Chantier Quinzaine',
+    image: ASJY_OFFICIAL_PHOTOS.sectionThiesGiletsBassine.src,
+    alternateSrc: ASJY_OFFICIAL_PHOTOS.sectionThiesGiletsBassine.alternateSrc,
+    filename: ASJY_OFFICIAL_PHOTOS.sectionThiesGiletsBassine.filename,
+    description: ASJY_OFFICIAL_PHOTOS.sectionThiesGiletsBassine.description
   },
   {
     id: 'photo-5',
-    title: 'Kits alimentaires et sachets de dons pour les jeûneurs',
-    category: 'Ramadan',
-    location: 'Point de Ralliement Opérationnel',
+    title: ASJY_OFFICIAL_PHOTOS.equipeTerrainSourire.title,
+    category: 'Vie Associative',
+    location: 'Terrain & Mosquées',
     region: 'National',
-    date: 'Ramadan 2026',
-    image: ASJY_PHOTOS.distributionSacs,
-    description: "Conditionnement et distribution de sacs garnis de pain frais, dattes et vivres distribués chaleureusement par les volontaires masqués et gantés."
+    date: 'Engagement Jeunesse',
+    image: ASJY_OFFICIAL_PHOTOS.equipeTerrainSourire.src,
+    alternateSrc: ASJY_OFFICIAL_PHOTOS.equipeTerrainSourire.alternateSrc,
+    filename: ASJY_OFFICIAL_PHOTOS.equipeTerrainSourire.filename,
+    description: ASJY_OFFICIAL_PHOTOS.equipeTerrainSourire.description
   },
   {
     id: 'photo-6',
-    title: 'Cadre de culte purifié et prêt pour la prière du Jummah',
-    category: 'Embellissement',
-    location: 'Grande Mosquée',
-    region: 'Sénégal',
-    date: 'Après Intervention',
-    image: ASJY_PHOTOS.heroMosque,
-    description: "Résultat final d'un chantier bimensuel réussi : sol éclatant, propreté irréprochable et atmosphère sainte prête à accueillir les fidèles."
+    title: ASJY_OFFICIAL_PHOTOS.ndogouBassinePreparation.title,
+    category: 'Ramadan',
+    location: 'Rues & Carrefours',
+    region: 'Thiès & Régions',
+    date: 'Ramadan Solidaire',
+    image: ASJY_OFFICIAL_PHOTOS.ndogouBassinePreparation.src,
+    alternateSrc: ASJY_OFFICIAL_PHOTOS.ndogouBassinePreparation.alternateSrc,
+    filename: ASJY_OFFICIAL_PHOTOS.ndogouBassinePreparation.filename,
+    description: ASJY_OFFICIAL_PHOTOS.ndogouBassinePreparation.description
+  },
+  {
+    id: 'photo-7',
+    title: ASJY_OFFICIAL_PHOTOS.ndogouThermosBenevole.title,
+    category: 'Ramadan',
+    location: '1re Édition Ndogou',
+    region: 'Section Thiès',
+    date: 'Ramadan Béni',
+    image: ASJY_OFFICIAL_PHOTOS.ndogouThermosBenevole.src,
+    alternateSrc: ASJY_OFFICIAL_PHOTOS.ndogouThermosBenevole.alternateSrc,
+    filename: ASJY_OFFICIAL_PHOTOS.ndogouThermosBenevole.filename,
+    description: ASJY_OFFICIAL_PHOTOS.ndogouThermosBenevole.description
+  },
+  {
+    id: 'photo-8',
+    title: ASJY_OFFICIAL_PHOTOS.ndogouServiceAutomobiliste.title,
+    category: 'Ramadan',
+    location: 'Axe Routier',
+    region: 'Thiès',
+    date: 'Rupture du Jeûne',
+    image: ASJY_OFFICIAL_PHOTOS.ndogouServiceAutomobiliste.src,
+    alternateSrc: ASJY_OFFICIAL_PHOTOS.ndogouServiceAutomobiliste.alternateSrc,
+    filename: ASJY_OFFICIAL_PHOTOS.ndogouServiceAutomobiliste.filename,
+    description: ASJY_OFFICIAL_PHOTOS.ndogouServiceAutomobiliste.description
+  },
+  {
+    id: 'photo-9',
+    title: ASJY_OFFICIAL_PHOTOS.lavageMobilierGantsRouges.title,
+    category: 'Nettoyage',
+    location: 'Cour & Sanitaires',
+    region: 'Chantier Quinzaine',
+    date: 'Hygiène & Entretien',
+    image: ASJY_OFFICIAL_PHOTOS.lavageMobilierGantsRouges.src,
+    alternateSrc: ASJY_OFFICIAL_PHOTOS.lavageMobilierGantsRouges.alternateSrc,
+    filename: ASJY_OFFICIAL_PHOTOS.lavageMobilierGantsRouges.filename,
+    description: ASJY_OFFICIAL_PHOTOS.lavageMobilierGantsRouges.description
+  },
+  {
+    id: 'photo-10',
+    title: ASJY_OFFICIAL_PHOTOS.ndogouSacsRosesBus.title,
+    category: 'Ramadan',
+    location: 'Point de Distribution',
+    region: 'Thiès & National',
+    date: 'Mois Sacré',
+    image: ASJY_OFFICIAL_PHOTOS.ndogouSacsRosesBus.src,
+    alternateSrc: ASJY_OFFICIAL_PHOTOS.ndogouSacsRosesBus.alternateSrc,
+    filename: ASJY_OFFICIAL_PHOTOS.ndogouSacsRosesBus.filename,
+    description: ASJY_OFFICIAL_PHOTOS.ndogouSacsRosesBus.description
+  },
+  {
+    id: 'photo-11',
+    title: ASJY_OFFICIAL_PHOTOS.roulageTapisThies.title,
+    category: 'Nettoyage',
+    location: 'Cour Ensoleillée',
+    region: 'Section Thiès',
+    date: 'Grand Dépoussiérage',
+    image: ASJY_OFFICIAL_PHOTOS.roulageTapisThies.src,
+    alternateSrc: ASJY_OFFICIAL_PHOTOS.roulageTapisThies.alternateSrc,
+    filename: ASJY_OFFICIAL_PHOTOS.roulageTapisThies.filename,
+    description: ASJY_OFFICIAL_PHOTOS.roulageTapisThies.description
   }
 ];
 
@@ -431,33 +374,33 @@ export const TIMELINE_MILESTONES = [
 
 export const DONATION_OPTIONS: DonationOption[] = [
   {
-    id: 'don-1',
+    id: 'don-500',
+    amount: 500,
+    title: 'Suggestion 500 FCFA',
+    impact: "Participe à l'achat des éponges, savons et sacs poubelles pour les nettoyages."
+  },
+  {
+    id: 'don-1000',
     amount: 1000,
-    title: 'Cotisation Mensuelle Membre',
-    impact: "Participe à l'achat des détergents, sacs poubelles et eau de Javel pour les chantiers bimensuels."
+    title: 'Suggestion 1 000 FCFA',
+    impact: "Finance les produits détergents et désinfectants de base pour un chantier."
   },
   {
-    id: 'don-2',
+    id: 'don-2500',
+    amount: 2500,
+    title: 'Suggestion 2 500 FCFA',
+    impact: "Finance l'achat de bouilloires neuves et de raclettes professionnelles."
+  },
+  {
+    id: 'don-5000',
     amount: 5000,
-    title: 'Dotation Bouilloires (Satala)',
-    impact: "Finance 10 bouilloires en plastique neuves et résistantes pour l'espace d'ablution d'une mosquée."
+    title: 'Suggestion 5 000 FCFA',
+    impact: "Finance les produits de désinfection complète pour un chantier de mosquée."
   },
   {
-    id: 'don-3',
+    id: 'don-10000',
     amount: 10000,
-    title: 'Pack Grand Nettoyage',
-    impact: "Finance l'intégralité des produits de désinfection et les raclettes professionnelles pour une mosquée."
-  },
-  {
-    id: 'don-4',
-    amount: 25000,
-    title: 'Rénovation Équipements & Éclairage',
-    impact: "Finance de nouvelles nattes lavables et des tubes LED économiques pour éclairer la prière de l'Aube (Fajr)."
-  },
-  {
-    id: 'don-5',
-    amount: 50000,
-    title: 'Parrainage d’un Chantier Complet',
-    impact: "Prend en charge tous les coûts matériels et le rafraîchissement des 30 bénévoles pour une grande mosquée."
+    title: 'Suggestion 10 000 FCFA',
+    impact: "Prend en charge un pack complet d'hygiène et fournitures pour une mosquée."
   }
 ];

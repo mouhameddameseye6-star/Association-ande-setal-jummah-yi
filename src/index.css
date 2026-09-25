@@ -1,1 +1,147 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Base theme transitions and scrollbar */
+html {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+/* Custom dark scrollbar */
+html.dark ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: #07130c;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #1c3826;
+  border-radius: 4px;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #275237;
+}
+
+/* Dark mode comprehensive styles for cards and neutral sections */
+.dark body {
+  background-color: #07130c;
+  color: #f1f5f9;
+}
+
+/* Container backgrounds in Dark Mode */
+.dark .bg-white {
+  background-color: #0f1f17 !important;
+  color: #f8fafc !important;
+}
+
+.dark .bg-\[\#FAF9F5\],
+.dark .bg-\[\#F4F3EE\],
+.dark .bg-\[\#F4F8F5\],
+.dark .bg-\[\#F0EFEA\] {
+  background-color: #0d1b14 !important;
+}
+
+.dark .bg-\[\#F7F6F0\] {
+  background-color: #07130c !important;
+}
+
+.dark .bg-gray-50 {
+  background-color: #12241b !important;
+  color: #f8fafc !important;
+}
+
+.dark .bg-gray-100 {
+  background-color: #172d22 !important;
+  color: #f8fafc !important;
+}
+
+.dark .bg-emerald-100 {
+  background-color: #143825 !important;
+  color: #6ee7b7 !important;
+}
+
+.dark .bg-amber-50 {
+  background-color: #21190c !important;
+  color: #fde68a !important;
+  border-color: rgba(212, 175, 55, 0.4) !important;
+}
+
+.dark .bg-\[\#0D3823\]\/10,
+.dark .bg-\[\#0D3823\]\/5 {
+  background-color: rgba(212, 175, 55, 0.15) !important;
+}
+
+/* Borders in Dark Mode */
+.dark .border-gray-100,
+.dark .border-gray-200,
+.dark .border-gray-300 {
+  border-color: rgba(212, 175, 55, 0.22) !important;
+}
+
+.dark .border-\[\#0D3823\]\/10,
+.dark .border-\[\#0D3823\]\/15,
+.dark .border-\[\#0D3823\]\/20,
+.dark .border-\[\#0D3823\]\/30 {
+  border-color: rgba(212, 175, 55, 0.3) !important;
+}
+
+/* Text readability in Dark Mode */
+.dark .text-gray-900,
+.dark .text-gray-800,
+.dark .text-gray-700 {
+  color: #f1f5f9 !important;
+}
+
+.dark .text-gray-600 {
+  color: #e2e8f0 !important;
+}
+
+.dark .text-gray-500 {
+  color: #cbd5e1 !important;
+}
+
+.dark .text-gray-400 {
+  color: #94a3b8 !important;
+}
+
+.dark .text-amber-900 {
+  color: #fef08a !important;
+}
+
+.dark .text-emerald-800 {
+  color: #a7f3d0 !important;
+}
+
+.dark .text-\[\#19241C\] {
+  color: #ffffff !important;
+}
+
+.dark .text-\[\#0D3823\] {
+  color: #34d399 !important;
+}
+
+.dark .text-\[\#145334\] {
+  color: #6ee7b7 !important;
+}
+
+/* Inputs, textareas and selects */
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #14261d !important;
+  color: #ffffff !important;
+  border-color: rgba(212, 175, 55, 0.3) !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #94a3b8 !important;
+}

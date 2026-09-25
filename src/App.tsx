@@ -3,15 +3,14 @@ import { motion, AnimatePresence } from 'motion/react';
 import { PageId } from './types';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
-import { OFFICIAL_CONTACT } from './data/content';
+import { PhotoProvider } from './context/PhotoContext';
 
-// Pages
+// Official Active Pages
 import { HomePage } from './pages/HomePage';
 import { AssociationPage } from './pages/AssociationPage';
 import { ActionsPage } from './pages/ActionsPage';
 import { HistoirePage } from './pages/HistoirePage';
 import { ImpactPage } from './pages/ImpactPage';
-import { RealisationsPage } from './pages/RealisationsPage';
 import { SectionsPage } from './pages/SectionsPage';
 import { RamadanPage } from './pages/RamadanPage';
 import { ChartesPage } from './pages/ChartesPage';
@@ -20,41 +19,64 @@ import { SoutenirPage } from './pages/SoutenirPage';
 import { OperationsPage } from './pages/OperationsPage';
 import { ActualitesPage } from './pages/ActualitesPage';
 import { ContactPage } from './pages/ContactPage';
+import { AdminPage } from './pages/AdminPage';
+
+// Clean Page Component Mapping (Strictly active pages, no obsolete routes)
+const PAGE_COMPONENTS: Record<PageId, React.ComponentType<{ onNavigate: (page: PageId) => void }>> = {
+  accueil: HomePage,
+  association: AssociationPage,
+  actions: ActionsPage,
+  histoire: HistoirePage,
+  impact: ImpactPage,
+  sections: SectionsPage,
+  ramadan: RamadanPage,
+  chartes: ChartesPage,
+  rejoindre: RejoindrePage,
+  soutenir: SoutenirPage,
+  operations: OperationsPage,
+  actualites: ActualitesPage,
+  contact: ContactPage,
+  admin: AdminPage
+};
+
+const VALID_PAGES = Object.keys(PAGE_COMPONENTS) as PageId[];
+
+function getInitialPage(): PageId {
+  if (typeof window === 'undefined') return 'accueil';
+
+  const path = window.location.pathname.replace(/^\//, '').toLowerCase();
+  if (path === 'admin') return 'admin';
+
+  const hash = window.location.hash.replace('#', '') as PageId;
+  if (VALID_PAGES.includes(hash)) return hash;
+
+  return 'accueil';
+}
 
 export function App() {
-  const [currentPage, setCurrentPage] = useState<PageId>('accueil');
+  const [currentPage, setCurrentPage] = useState<PageId>(getInitialPage);
 
-  // Sync hash routing if user opens with URL hash or clicks browser back/forward
+  // Sync hash routing and browser back/forward buttons
   useEffect(() => {
-    const handleHashChange = () => {
+    const handleNavigationSync = () => {
+      const path = window.location.pathname.replace(/^\//, '').toLowerCase();
+      if (path === 'admin') {
+        setCurrentPage('admin');
+        return;
+      }
+
       const hash = window.location.hash.replace('#', '') as PageId;
-      const validPages: PageId[] = [
-        'accueil',
-        'association',
-        'actions',
-        'histoire',
-        'impact',
-        'realisations',
-        'sections',
-        'ramadan',
-        'chartes',
-        'rejoindre',
-        'soutenir',
-        'operations',
-        'actualites',
-        'contact'
-      ];
-      if (validPages.includes(hash)) {
+      if (VALID_PAGES.includes(hash)) {
         setCurrentPage(hash);
       }
     };
 
-    if (window.location.hash) {
-      handleHashChange();
-    }
-
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('hashchange', handleNavigationSync);
+    window.addEventListener('popstate', handleNavigationSync);
+    return () => {
+      window.removeEventListener('hashchange', handleNavigationSync);
+      window.removeEventListener('popstate', handleNavigationSync);
+    };
   }, []);
 
   const handleNavigate = (page: PageId) => {
@@ -63,98 +85,58 @@ export function App() {
       return;
     }
 
-    window.location.hash = page;
+    if (page === 'admin') {
+      window.location.hash = 'admin';
+      try {
+        window.history.pushState(null, '', '/admin');
+      } catch (_) {
+        // Fallback for sandboxed iframe environments
+      }
+    } else {
+      window.location.hash = page;
+      try {
+        window.history.pushState(null, '', `/#${page}`);
+      } catch (_) {
+        // Fallback
+      }
+    }
+
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const renderActivePage = () => {
-    switch (currentPage) {
-      case 'accueil':
-        return <HomePage onNavigate={handleNavigate} />;
-      case 'association':
-        return <AssociationPage onNavigate={handleNavigate} />;
-      case 'actions':
-        return <ActionsPage onNavigate={handleNavigate} />;
-      case 'histoire':
-        return <HistoirePage onNavigate={handleNavigate} />;
-      case 'impact':
-        return <ImpactPage onNavigate={handleNavigate} />;
-      case 'realisations':
-        return <RealisationsPage onNavigate={handleNavigate} />;
-      case 'sections':
-        return <SectionsPage onNavigate={handleNavigate} />;
-      case 'ramadan':
-        return <RamadanPage onNavigate={handleNavigate} />;
-      case 'chartes':
-        return <ChartesPage onNavigate={handleNavigate} />;
-      case 'rejoindre':
-        return <RejoindrePage onNavigate={handleNavigate} />;
-      case 'soutenir':
-        return <SoutenirPage onNavigate={handleNavigate} />;
-      case 'operations':
-        return <OperationsPage onNavigate={handleNavigate} />;
-      case 'actualites':
-        return <ActualitesPage onNavigate={handleNavigate} />;
-      case 'contact':
-        return <ContactPage onNavigate={handleNavigate} />;
-      default:
-        return <HomePage onNavigate={handleNavigate} />;
-    }
-  };
+  // Render the current active component cleanly without any switch/case boilerplate
+  const ActivePageComponent = PAGE_COMPONENTS[currentPage] || HomePage;
 
   return (
-    <div className="min-h-screen bg-[#F7F6F0] text-[#19241C] flex flex-col selection:bg-[#0D3823] selection:text-[#FAF9F5] font-sans antialiased">
-      {/* Top Banner / Announcement */}
-      <div className="bg-[#0A291A] text-emerald-100 text-[11px] sm:text-xs py-1.5 px-4 text-center border-b border-[#D4AF37]/30 flex flex-wrap items-center justify-center gap-2">
-        <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-ping shrink-0" />
-        <span>Association Andeu Setal Jummah Yi (ASJY) — « Jeff té YALLA rek takh »</span>
-        <span className="hidden sm:inline text-emerald-400">•</span>
-        <span className="text-gray-300">Contact & Dons (Wave / OM) :</span>
-        <div className="inline-flex items-center gap-1.5 font-mono font-bold text-[#D4AF37]">
-          <a
-            href={`tel:${OFFICIAL_CONTACT.phone1Raw}`}
-            className="hover:underline"
-            title="Appeler le 77 757 87 89"
-          >
-            {OFFICIAL_CONTACT.phone1}
-          </a>
-          <span className="text-emerald-400 font-sans">/</span>
-          <a
-            href={`tel:${OFFICIAL_CONTACT.phone2Raw}`}
-            className="hover:underline"
-            title="Appeler le 76 440 14 41"
-          >
-            {OFFICIAL_CONTACT.phone2}
-          </a>
-        </div>
+    <PhotoProvider>
+      <div className="min-h-screen bg-[#F7F6F0] dark:bg-[#07130c] text-[#19241C] dark:text-[#EAECE9] flex flex-col selection:bg-[#0D3823] dark:selection:bg-[#D4AF37] selection:text-[#FAF9F5] dark:selection:text-[#07130c] font-sans antialiased transition-colors duration-200">
+        {/* Main Navbar */}
+        <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
+
+        {/* Dynamic Page Container */}
+        <main className="flex-1 overflow-hidden" id="main-content-router">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentPage}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{
+                duration: 0.22,
+                ease: [0.25, 1, 0.5, 1]
+              }}
+              className="w-full"
+            >
+              <ActivePageComponent onNavigate={handleNavigate} />
+            </motion.div>
+          </AnimatePresence>
+        </main>
+
+        {/* Global Multi-Page Footer */}
+        <Footer onNavigate={handleNavigate} />
       </div>
-
-      {/* Main Navbar */}
-      <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
-
-      {/* Dynamic Page Container with Framer Motion transitions (fade-in & slide-up) */}
-      <main className="flex-1 overflow-hidden" id="main-content-router">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentPage}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{
-              duration: 0.26,
-              ease: [0.25, 1, 0.5, 1]
-            }}
-            className="w-full"
-          >
-            {renderActivePage()}
-          </motion.div>
-        </AnimatePresence>
-      </main>
-
-      {/* Global Multi-Page Footer */}
-      <Footer onNavigate={handleNavigate} />
-    </div>
+    </PhotoProvider>
   );
 }
 

@@ -9,7 +9,9 @@ export const CITY_COORDINATES = {
   thies: { x: 107.3, y: 289.8, label: "Thiès", region: "Thiès" },
   diourbel: { x: 189.5, y: 306.3, label: "Diourbel / Mbacké", region: "Diourbel" },
   fatick: { x: 169.0, y: 346.1, label: "Fatick", region: "Fatick" },
+  kaolack: { x: 210.0, y: 365.0, label: "Kaolack", region: "Kaolack" },
   saint_louis: { x: 157.9, y: 137.5, label: "Saint-Louis", region: "Saint-Louis" },
+  matam: { x: 505.0, y: 195.0, label: "Matam", region: "Matam" },
   ziguinchor: { x: 184.8, y: 560.4, label: "Ziguinchor (Casamance)", region: "Ziguinchor" },
   tambacounda: { x: 492.8, y: 414.8, label: "Tambacounda", region: "Tambacounda" },
 };

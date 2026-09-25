@@ -22,7 +22,7 @@ interface SoutenirPageProps {
 }
 
 export const SoutenirPage: React.FC<SoutenirPageProps> = ({ onNavigate }) => {
-  const [selectedAmount, setSelectedAmount] = useState<number>(10000);
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(2500);
   const [customAmount, setCustomAmount] = useState<string>('');
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'financier' | 'nature' | 'parrainage'>('financier');
@@ -34,6 +34,8 @@ export const SoutenirPage: React.FC<SoutenirPageProps> = ({ onNavigate }) => {
   };
 
   const getImpactDescription = (amount: number) => {
+    if (amount <= 0) return "Chaque contribution, quel que soit son montant, soutient directement l'achat de matériel d'entretien et les chantiers dans les mosquées.";
+    if (amount < 1000) return "Permet d'acheter des éponges, sacs poubelles renforcés et produits d'entretien immédiats.";
     if (amount < 2500) return "Permet d'acheter 2 bouilloires (satala) neuves et un flacon de désinfectant concentré.";
     if (amount < 7500) return "Permet d'équiper une mosquée en balais professionnels, raclettes de sol et 5 bouilloires neuves.";
     if (amount < 15000) return "Finance l'ensemble des détergents, javels et désinfectants pour un grand nettoyage de mosquée.";
@@ -41,7 +43,7 @@ export const SoutenirPage: React.FC<SoutenirPageProps> = ({ onNavigate }) => {
     return "Finance l'intervention intégrale : nettoyage, plomberie d'ablution, réfection électrique et don d'équipement complet.";
   };
 
-  const currentAmount = customAmount ? parseInt(customAmount, 10) || 0 : selectedAmount;
+  const currentAmount = customAmount ? parseInt(customAmount, 10) || 0 : (selectedAmount || 0);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16" id="soutenir-page">
@@ -55,8 +57,75 @@ export const SoutenirPage: React.FC<SoutenirPageProps> = ({ onNavigate }) => {
           Soutenir Nos Actions
         </h1>
         <p className="text-base sm:text-lg text-gray-700 max-w-3xl leading-relaxed">
-          Chaque contribution, qu'elle prenne la forme d'une cotisation mensuelle, d'un don financier ponctuel ou de matériel en nature, va directement au service des mosquées.
+          Chaque contribution, qu'elle prenne la forme d'un don financier libre, d'une cotisation membre ou de matériel en nature, va directement au service des mosquées.
         </p>
+      </div>
+
+      {/* CLARIFICATION & DISTINCTION : Cotisation Membre vs Faire un Don */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6" id="distinction-cotisation-don">
+        {/* Card 1: Cotisation Membre */}
+        <div className="bg-white dark:bg-[#0f1f17] rounded-3xl p-6 sm:p-8 border-2 border-[#0D3823]/20 dark:border-[#D4AF37]/30 shadow-sm flex flex-col justify-between space-y-4">
+          <div className="space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0D3823]/10 dark:bg-[#1E4D34] text-xs font-bold text-[#0D3823] dark:text-[#D4AF37] uppercase tracking-wider">
+              <span>Membres de l'Association</span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-black text-[#19241C] dark:text-white">
+              Cotisation Membre
+            </h3>
+            <div className="text-3xl font-black text-[#0D3823] dark:text-[#D4AF37]">
+              1 000 FCFA <span className="text-sm font-semibold text-gray-500 dark:text-gray-400">/ mois</span>
+            </div>
+            <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+              La cotisation des membres de l’Association Andeu Setal Jummah Yi est de <strong>1 000 FCFA par mois</strong>. Cette somme concerne <strong>uniquement les membres de l’association</strong> pour assurer le renouvellement régulier du matériel et l'autonomie des chantiers.
+            </p>
+            <p className="text-[11px] text-gray-500 dark:text-gray-400 italic">
+              Elle ne doit pas être présentée comme un montant obligatoire pour les personnes extérieures qui souhaitent simplement soutenir l’association.
+            </p>
+          </div>
+          <div className="pt-2 border-t border-gray-100 dark:border-gray-800">
+            <button
+              onClick={() => onNavigate('rejoindre')}
+              className="w-full py-2.5 rounded-xl bg-white dark:bg-[#13261c] border border-[#0D3823]/30 text-[#0D3823] dark:text-[#D4AF37] font-bold text-xs uppercase tracking-wider hover:bg-[#FAF9F5] transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+            >
+              <span>Adhérer comme membre (Charte C4)</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+
+        {/* Card 2: Faire un Don */}
+        <div className="bg-white dark:bg-[#0f1f17] rounded-3xl p-6 sm:p-8 border-2 border-[#D4AF37]/60 shadow-sm flex flex-col justify-between space-y-4 ring-1 ring-[#D4AF37]/30">
+          <div className="space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D4AF37]/15 text-xs font-bold text-[#8c6b12] dark:text-[#D4AF37] uppercase tracking-wider">
+              <span>Soutien Extérieur & Bienfaiteurs</span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-black text-[#19241C] dark:text-white">
+              Faire un Don
+            </h3>
+            <div className="text-3xl font-black text-[#D4AF37]">
+              Montant Libre
+            </div>
+            <p className="text-xs sm:text-sm text-gray-800 dark:text-gray-200 leading-relaxed font-semibold">
+              « Vous souhaitez soutenir les actions de l’Association Andeu Setal Jummah Yi ? Vous pouvez faire un don du montant de votre choix. Chaque contribution contribue à soutenir nos actions. »
+            </p>
+            <p className="text-[11px] text-gray-500 dark:text-gray-400 italic">
+              Pour les personnes qui souhaitent soutenir ASJY sans être membres, le montant du don est totalement libre. Chaque personne peut contribuer avec la somme de son choix. Il n’y a aucun montant minimum obligatoire pour faire un don.
+            </p>
+          </div>
+          <div className="pt-2 border-t border-gray-100 dark:border-gray-800">
+            <button
+              onClick={() => {
+                setActiveTab('financier');
+                const el = document.getElementById('section-don-financier');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="w-full py-2.5 rounded-xl bg-[#0D3823] hover:bg-[#145334] text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+            >
+              <Heart className="w-3.5 h-3.5 text-[#D4AF37]" />
+              <span>Choisir mon don libre</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Slogan Sadaqa Jariya */}
@@ -74,8 +143,8 @@ export const SoutenirPage: React.FC<SoutenirPageProps> = ({ onNavigate }) => {
         </div>
 
         <div className="bg-white/10 backdrop-blur-sm p-4 rounded-2xl border border-white/20 text-center shrink-0">
-          <div className="text-xl font-extrabold text-[#D4AF37]">1 000 FCFA</div>
-          <div className="text-xs text-white">Cotisation mensuelle membre</div>
+          <div className="text-xl font-extrabold text-[#D4AF37]">Montant Libre</div>
+          <div className="text-xs text-white">Sans aucun minimum obligatoire</div>
         </div>
       </div>
 
@@ -90,7 +159,7 @@ export const SoutenirPage: React.FC<SoutenirPageProps> = ({ onNavigate }) => {
           }`}
         >
           <CreditCard className="w-4 h-4 text-[#D4AF37]" />
-          <span>Don Financier & Mobile Money</span>
+          <span>Faire un Don Libre</span>
         </button>
 
         <button
@@ -118,53 +187,98 @@ export const SoutenirPage: React.FC<SoutenirPageProps> = ({ onNavigate }) => {
         </button>
       </div>
 
-      {/* 1. DON FINANCIER & CALCULATEUR D'IMPACT */}
+      {/* 1. DON FINANCIER LIBRE & CALCULATEUR D'IMPACT */}
       {activeTab === 'financier' && (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 animate-fade-in">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 animate-fade-in" id="section-don-financier">
           {/* Amount selection */}
           <div className="lg:col-span-7 bg-white rounded-3xl p-8 border border-[#0D3823]/15 shadow-sm space-y-6">
-            <h3 className="text-xl font-bold text-[#19241C] flex items-center gap-2">
-              <Calculator className="w-5 h-5 text-[#0D3823]" />
-              <span>Choisir un montant de contribution</span>
-            </h3>
+            <div className="space-y-2">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#0D3823] bg-[#0D3823]/10 px-3 py-1 rounded-full">
+                Don Totalement Libre
+              </span>
+              <h3 className="text-lg sm:text-xl font-black text-[#19241C] leading-snug">
+                « Vous souhaitez soutenir les actions de l’Association Andeu Setal Jummah Yi ? Vous pouvez faire un don du montant de votre choix. Chaque contribution contribue à soutenir nos actions. »
+              </h3>
+              <p className="text-xs text-gray-500">
+                Les montants ci-dessous sont <strong>uniquement des suggestions</strong>. Vous pouvez toujours saisir un montant différent selon vos moyens :
+              </p>
+            </div>
 
+            {/* Suggestions buttons: 500, 1000, 2500, 5000, 10000, Autre montant */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              {[1000, 2500, 5000, 10000, 25000, 50000].map((amt) => (
+              {[500, 1000, 2500, 5000, 10000].map((amt) => (
                 <button
                   key={amt}
+                  type="button"
                   onClick={() => {
                     setSelectedAmount(amt);
                     setCustomAmount('');
                   }}
-                  className={`py-3 px-4 rounded-xl text-center border font-bold transition-all ${
+                  className={`py-3 px-4 rounded-xl text-center border font-bold transition-all cursor-pointer ${
                     currentAmount === amt && !customAmount
                       ? 'bg-[#0D3823] text-white border-[#0D3823] shadow'
                       : 'bg-[#FAF9F5] text-gray-800 border-gray-200 hover:border-[#0D3823]/40'
                   }`}
                 >
                   <div className="text-base">{amt.toLocaleString('fr-FR')} FCFA</div>
+                  <div className="text-[10px] text-gray-500 dark:text-gray-400 font-normal">Suggestion</div>
                 </button>
               ))}
+
+              {/* Autre montant button */}
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedAmount(null);
+                  const inputEl = document.getElementById('input-custom-amount');
+                  if (inputEl) inputEl.focus();
+                }}
+                className={`py-3 px-4 rounded-xl text-center border font-bold transition-all cursor-pointer ${
+                  customAmount || selectedAmount === null
+                    ? 'bg-[#D4AF37] text-[#0A291A] border-[#D4AF37] shadow'
+                    : 'bg-[#FAF9F5] text-gray-800 border-gray-200 hover:border-[#D4AF37]/50'
+                }`}
+              >
+                <div className="text-base">Autre montant</div>
+                <div className="text-[10px] opacity-75 font-normal">Montant libre</div>
+              </button>
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-gray-600 uppercase mb-1">
-                Ou saisir un montant personnalisé (FCFA) :
+              <label htmlFor="input-custom-amount" className="block text-xs font-bold text-gray-700 uppercase mb-1.5">
+                Saisir librement le montant de votre don (FCFA) :
               </label>
-              <input
-                type="number"
-                placeholder="Ex : 15 000"
-                value={customAmount}
-                onChange={(e) => setCustomAmount(e.target.value)}
-                className="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#0D3823] focus:outline-none text-sm font-semibold"
-              />
+              <div className="relative">
+                <input
+                  id="input-custom-amount"
+                  type="number"
+                  min="1"
+                  placeholder="Ex : 500, 1 500, 3 000, 15 000..."
+                  value={customAmount}
+                  onChange={(e) => {
+                    setCustomAmount(e.target.value);
+                    setSelectedAmount(null);
+                  }}
+                  className="w-full p-3.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#0D3823] focus:outline-none text-base font-bold text-gray-900 bg-white"
+                />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-extrabold text-gray-400">
+                  FCFA
+                </span>
+              </div>
+              <p className="text-[11px] text-gray-500 mt-1">
+                Aucun montant minimum obligatoire. Chaque somme donnée avec sincérité est précieuse.
+              </p>
             </div>
 
             {/* Impact indicator */}
             <div className="p-5 rounded-2xl bg-[#F4F8F5] border border-[#0D3823]/20 space-y-2">
               <div className="text-xs font-extrabold text-[#0D3823] uppercase tracking-wider flex items-center gap-1.5">
                 <Sparkles className="w-4 h-4 text-[#D4AF37]" />
-                <span>Impact concret estimé pour ce don :</span>
+                <span>
+                  {currentAmount > 0
+                    ? `Impact concret estimé pour ${currentAmount.toLocaleString('fr-FR')} FCFA :`
+                    : "Votre don soutient directement nos actions :"}
+                </span>
               </div>
               <p className="text-sm text-gray-800 font-medium leading-relaxed">
                 {getImpactDescription(currentAmount)}

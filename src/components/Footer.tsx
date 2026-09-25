@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { PageId } from '../types';
 import { AsjyLogo } from './AsjyLogo';
 import { OFFICIAL_SOCIALS, OFFICIAL_CONTACT } from '../data/content';
+import { usePhotos } from '../context/PhotoContext';
 import {
   Heart,
   Phone,
@@ -14,7 +15,8 @@ import {
   ArrowUpRight,
   MessageSquare,
   Copy,
-  Check
+  Check,
+  Lock
 } from 'lucide-react';
 
 interface FooterProps {
@@ -22,6 +24,7 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+  const { siteSettings } = usePhotos();
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
   const handleCopy = (text: string, key: string) => {
@@ -44,7 +47,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <AsjyLogo size="lg" lightText={true} />
 
             <p className="text-sm text-gray-300 leading-relaxed pr-4">
-              L'Association Andeu Setal Jummah Yi (ASJY) est une organisation sénégalaise à but non lucratif fondée en 2022. Elle rassemble une jeunesse dévouée et bénévole œuvrant pour la propreté, l'embellissement, l'entretien des équipements et la solidarité autour des mosquées du Sénégal.
+              {siteSettings.presentation}
             </p>
 
             <div className="p-3.5 rounded-xl bg-white/5 border border-[#D4AF37]/30 inline-block">
@@ -52,7 +55,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 Devise & Slogan Fondateur
               </div>
               <div className="text-base font-extrabold text-white italic mt-0.5">
-                « Jeff té YALLA rek takh »
+                « {siteSettings.slogan} »
               </div>
             </div>
 
@@ -104,7 +107,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button
                   onClick={() => handleNav('accueil')}
-                  className="hover:text-white hover:translate-x-1 transition-all text-left"
+                  className="hover:text-white hover:translate-x-1 transition-all text-left cursor-pointer"
                 >
                   Accueil
                 </button>
@@ -112,7 +115,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button
                   onClick={() => handleNav('association')}
-                  className="hover:text-white hover:translate-x-1 transition-all text-left"
+                  className="hover:text-white hover:translate-x-1 transition-all text-left cursor-pointer"
                 >
                   Présentation & Mission
                 </button>
@@ -120,7 +123,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button
                   onClick={() => handleNav('histoire')}
-                  className="hover:text-white hover:translate-x-1 transition-all text-left"
+                  className="hover:text-white hover:translate-x-1 transition-all text-left cursor-pointer"
                 >
                   Notre Histoire (Timeline)
                 </button>
@@ -128,7 +131,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button
                   onClick={() => handleNav('sections')}
-                  className="hover:text-white hover:translate-x-1 transition-all text-left"
+                  className="hover:text-white hover:translate-x-1 transition-all text-left cursor-pointer"
                 >
                   Nos Sections au Sénégal
                 </button>
@@ -136,7 +139,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button
                   onClick={() => handleNav('impact')}
-                  className="hover:text-white hover:translate-x-1 transition-all text-left"
+                  className="hover:text-white hover:translate-x-1 transition-all text-left cursor-pointer"
                 >
                   Notre Impact & Chiffres
                 </button>
@@ -144,7 +147,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button
                   onClick={() => handleNav('chartes')}
-                  className="hover:text-white hover:translate-x-1 transition-all text-left flex items-center gap-1.5"
+                  className="hover:text-white hover:translate-x-1 transition-all text-left flex items-center gap-1.5 cursor-pointer"
                 >
                   <span>Nos 8 Chartes</span>
                   <span className="text-[10px] bg-[#D4AF37]/20 text-[#D4AF37] px-1.5 py-0.2 rounded font-bold">Règles</span>
@@ -162,32 +165,24 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button
                   onClick={() => handleNav('actions')}
-                  className="hover:text-white hover:translate-x-1 transition-all text-left"
+                  className="hover:text-white hover:translate-x-1 transition-all text-left cursor-pointer"
                 >
                   Nos Actions de Nettoyage
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleNav('realisations')}
-                  className="hover:text-white hover:translate-x-1 transition-all text-left"
-                >
-                  Galerie des Réalisations
-                </button>
-              </li>
-              <li>
-                <button
                   onClick={() => handleNav('ramadan')}
-                  className="hover:text-white hover:translate-x-1 transition-all text-left flex items-center gap-1.5"
+                  className="hover:text-white hover:translate-x-1 transition-all text-left flex items-center gap-1.5 cursor-pointer"
                 >
                   <span>Ramadan & Ndogou</span>
-                  <span className="text-[10px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.2 rounded font-bold">Régions</span>
+                  <span className="text-[10px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.2 rounded font-bold">Solidarité</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => handleNav('operations')}
-                  className="hover:text-white hover:translate-x-1 transition-all text-left flex items-center gap-1.5"
+                  className="hover:text-white hover:translate-x-1 transition-all text-left flex items-center gap-1.5 cursor-pointer"
                 >
                   <span>Prochaines Opérations</span>
                   <span className="text-[10px] bg-white/20 text-white px-1.5 py-0.2 rounded font-bold">Agenda</span>
@@ -196,9 +191,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button
                   onClick={() => handleNav('actualites')}
-                  className="hover:text-white hover:translate-x-1 transition-all text-left"
+                  className="hover:text-white hover:translate-x-1 transition-all text-left cursor-pointer"
                 >
                   Actualités & Bilans
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('admin')}
+                  className="hover:text-[#D4AF37] hover:translate-x-1 transition-all text-left flex items-center gap-1.5 text-emerald-300 text-xs font-bold pt-2 cursor-pointer"
+                >
+                  <Lock className="w-3 h-3 text-[#D4AF37]" />
+                  <span>Espace Administrateur</span>
                 </button>
               </li>
             </ul>
@@ -213,7 +217,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button
                   onClick={() => handleNav('rejoindre')}
-                  className="inline-flex items-center gap-1.5 text-white font-bold bg-[#145334] hover:bg-[#1b6b44] px-3 py-1.5 rounded-lg border border-[#D4AF37]/30 text-xs uppercase tracking-wider transition-colors"
+                  className="inline-flex items-center gap-1.5 text-white font-bold bg-[#145334] hover:bg-[#1b6b44] px-3 py-1.5 rounded-lg border border-[#D4AF37]/30 text-xs uppercase tracking-wider transition-colors cursor-pointer"
                 >
                   <span>Devenir Membre</span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-[#D4AF37]" />
@@ -222,7 +226,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button
                   onClick={() => handleNav('soutenir')}
-                  className="hover:text-white hover:translate-x-1 transition-all text-left"
+                  className="hover:text-white hover:translate-x-1 transition-all text-left cursor-pointer"
                 >
                   Nous Soutenir (Cotisations/Dons)
                 </button>
@@ -230,7 +234,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button
                   onClick={() => handleNav('contact')}
-                  className="hover:text-white hover:translate-x-1 transition-all text-left"
+                  className="hover:text-white hover:translate-x-1 transition-all text-left cursor-pointer"
                 >
                   Proposer une Mosquée
                 </button>
@@ -246,19 +250,19 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 {/* Numéro 1 */}
                 <div className="flex items-center justify-between gap-2 py-1 border-b border-white/5">
                   <a
-                    href={`tel:${OFFICIAL_CONTACT.phone1Raw}`}
+                    href={`tel:${siteSettings.phone1.replace(/[^0-9+]/g, '')}`}
                     className="font-mono font-extrabold text-sm text-white hover:text-[#D4AF37] hover:underline flex items-center gap-1.5"
-                    title="Appeler le 77 757 87 89"
+                    title={`Appeler le ${siteSettings.phone1}`}
                   >
                     <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
-                    <span>{OFFICIAL_CONTACT.phone1}</span>
+                    <span>{siteSettings.phone1}</span>
                   </a>
 
                   <button
-                    onClick={() => handleCopy(OFFICIAL_CONTACT.phone1, 'footer-1')}
+                    onClick={() => handleCopy(siteSettings.phone1, 'footer-1')}
                     className="relative inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold bg-white/10 hover:bg-white/20 text-[#D4AF37] border border-[#D4AF37]/30 transition-all active:scale-95 cursor-pointer"
-                    title="Copier le numéro 77 757 87 89"
-                    aria-label="Copier le numéro 77 757 87 89"
+                    title="Copier le numéro"
+                    aria-label="Copier le numéro"
                   >
                     <AnimatePresence mode="wait">
                       {copiedKey === 'footer-1' ? (
@@ -293,19 +297,19 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 {/* Numéro 2 */}
                 <div className="flex items-center justify-between gap-2 py-1">
                   <a
-                    href={`tel:${OFFICIAL_CONTACT.phone2Raw}`}
+                    href={`tel:${siteSettings.phone2.replace(/[^0-9+]/g, '')}`}
                     className="font-mono font-extrabold text-sm text-white hover:text-[#D4AF37] hover:underline flex items-center gap-1.5"
-                    title="Appeler le 76 440 14 41"
+                    title={`Appeler le ${siteSettings.phone2}`}
                   >
                     <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
-                    <span>{OFFICIAL_CONTACT.phone2}</span>
+                    <span>{siteSettings.phone2}</span>
                   </a>
 
                   <button
-                    onClick={() => handleCopy(OFFICIAL_CONTACT.phone2, 'footer-2')}
+                    onClick={() => handleCopy(siteSettings.phone2, 'footer-2')}
                     className="relative inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold bg-white/10 hover:bg-white/20 text-[#D4AF37] border border-[#D4AF37]/30 transition-all active:scale-95 cursor-pointer"
-                    title="Copier le numéro 76 440 14 41"
-                    aria-label="Copier le numéro 76 440 14 41"
+                    title="Copier le numéro"
+                    aria-label="Copier le numéro"
                   >
                     <AnimatePresence mode="wait">
                       {copiedKey === 'footer-2' ? (
@@ -368,21 +372,21 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <div className="pt-1 space-y-1 text-gray-400 text-[11px]">
                 <div className="flex items-center gap-2">
                   <MapPin className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
-                  <span>Dakar, Sénégal (Sections actives régionales)</span>
+                  <span>{siteSettings.headquarters}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
-                  <span>Chantiers par quinzaine de dimanche</span>
+                  <span>{siteSettings.scheduleNotice}</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright & Principles */}
+        {/* Bottom Bar: Copyright & Admin link */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
           <div>
-            © {new Date().getFullYear()} Association Andeu Setal Jummah Yi (ASJY). Tous droits réservés.
+            © {new Date().getFullYear()} {siteSettings.name} (ASJY). Tous droits réservés.
           </div>
           <div className="flex items-center gap-3">
             <span className="text-gray-300">Engagement</span>
@@ -392,6 +396,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <span className="text-gray-300">Propreté</span>
             <span>•</span>
             <span className="text-gray-300">Communauté</span>
+            <span>•</span>
+            <button
+              onClick={() => handleNav('admin')}
+              className="text-gray-400 hover:text-[#D4AF37] underline transition-colors cursor-pointer"
+            >
+              Administration (/admin)
+            </button>
           </div>
         </div>
       </div>

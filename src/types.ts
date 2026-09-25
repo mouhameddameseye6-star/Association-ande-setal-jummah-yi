@@ -4,7 +4,6 @@ export type PageId =
   | 'actions'
   | 'histoire'
   | 'impact'
-  | 'realisations'
   | 'sections'
   | 'ramadan'
   | 'chartes'
@@ -12,7 +11,38 @@ export type PageId =
   | 'soutenir'
   | 'operations'
   | 'actualites'
-  | 'contact';
+  | 'contact'
+  | 'admin';
+
+export type ActivityKey =
+  | 'nettoyage'
+  | 'embellissement'
+  | 'entretien'
+  | 'social'
+  | 'ramadan'
+  | 'autres';
+
+export interface ActivityConfig {
+  key: ActivityKey;
+  title: string;
+  shortTitle: string;
+  icon: string;
+  description: string;
+  categoryLabel: string;
+}
+
+export interface UserPhoto {
+  id: string;
+  activityKey: ActivityKey;
+  dataUrl: string;
+  name: string;
+  title?: string;
+  location?: string;
+  description?: string;
+  date: string;
+  size: number;
+  addedAt: number;
+}
 
 export interface ArticleData {
   id: string;
@@ -28,12 +58,58 @@ export interface ArticleData {
 export interface RealisationPhoto {
   id: string;
   title: string;
-  category: 'Nettoyage' | 'Embellissement' | 'Actions Sociales' | 'Ramadan' | 'Vie Associative';
+  category: 'Nettoyage' | 'Embellissement' | 'Entretien' | 'Actions Sociales' | 'Ramadan' | 'Vie Associative' | 'Autres';
   location: string;
   region: string;
   date: string;
   image: string;
+  alternateSrc?: string;
+  filename?: string;
   description: string;
+  isUserPhoto?: boolean;
+}
+
+export interface HomepagePhoto {
+  id: string;
+  title: string;
+  category: 'Chantier' | 'Nettoyage' | 'Embellissement' | 'Entretien' | 'Ramadan' | 'Vie Associative';
+  location: string;
+  region: string;
+  date: string;
+  image: string;
+  alternateSrc?: string;
+  filename?: string;
+  description: string;
+  isUserAdded?: boolean;
+  addedAt?: number;
+}
+
+export interface MembershipApplication {
+  id: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  email: string;
+  cityRegion: string;
+  motivation: string;
+  status: 'en_attente' | 'acceptee' | 'refusee';
+  submittedAt: number;
+  notes?: string;
+}
+
+export interface SiteInfoSettings {
+  name: string;
+  slogan: string;
+  subtitle: string;
+  presentation: string;
+  creationDate: string;
+  phone1: string;
+  phone2: string;
+  email: string;
+  headquarters: string;
+  scheduleNotice: string;
+  cotisationAmount: string;
+  zonesIntervention: string;
 }
 
 export interface OperationEvent {
@@ -57,32 +133,24 @@ export interface CharteItem {
   rules?: string[];
 }
 
-export interface SanctionItem {
-  level: string;
-  description: string;
-  impact: string;
-}
-
 export interface SectionData {
   id: string;
   name: string;
+  region: string;
   activeSince: string;
-  mosquesCleaned: number;
-  membersCount: number;
+  status: 'active' | 'en_developpement';
   description: string;
   coordinatorContact: string;
   communes: string[];
 }
 
 export interface AdhesionFormData {
-  fullName: string;
+  firstName: string;
+  lastName: string;
   phone: string;
   email: string;
-  region: string;
-  city: string;
+  cityRegion: string;
   motivation: string;
-  acceptChartes: boolean;
-  acceptCotisation: boolean;
 }
 
 export interface DonationOption {
